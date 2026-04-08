@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Isha Agarwal — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-light: #112240;
+    --accent: #4f8ef7;
+    --accent2: #a78bfa;
+    --gold: #f0b429;
+    --text: #ccd6f6;
+    --text-dim: #8892b0;
+    --white: #e6f1ff;
+    --card-bg: #112240;
+    --border: rgba(79,142,247,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    color: var(--accent);
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section { padding: 6rem 0; }
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--white);
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; left: 0;
+    width: 48px; height: 2px;
+    background: var(--accent);
+  }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,142,247,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5rem);
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+  .hero-title {
+    font-size: 1.1rem;
+    color: var(--accent2);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .hero-desc {
+    color: var(--text-dim);
+    font-size: 1rem;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #3a7af5; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+  .btn-outline:hover { background: rgba(79,142,247,0.1); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid rgba(136,146,176,0.3);
+  }
+  .btn-ghost:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
+
+  /* PHOTO */
+  .photo-frame {
+    position: relative;
+    width: 300px; height: 380px;
+    margin: 0 auto;
+  }
+  .photo-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 8px;
+    position: relative; z-index: 2;
+    filter: grayscale(10%) contrast(1.05);
+  }
+  .photo-frame::before {
+    content: '';
+    position: absolute;
+    top: 14px; left: 14px;
+    width: 100%; height: 100%;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    z-index: 1;
+    transition: all 0.3s;
+  }
+  .photo-frame:hover::before { top: 10px; left: 10px; }
+
+  /* ABOUT */
+  #about { background: rgba(17,34,64,0.3); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text { color: var(--text-dim); font-size: 0.97rem; line-height: 1.9; }
+  .about-text p { margin-bottom: 1rem; }
+  .about-highlights { display: flex; flex-direction: column; gap: 1rem; }
+  .highlight-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    display: flex; align-items: flex-start; gap: 1rem;
+  }
+  .highlight-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .highlight-text h4 { color: var(--white); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .highlight-text p { color: var(--text-dim); font-size: 0.82rem; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .skill-category {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-category:hover { border-color: rgba(79,142,247,0.4); transform: translateY(-2px); }
+  .skill-cat-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag {
+    background: rgba(79,142,247,0.08);
+    border: 1px solid rgba(79,142,247,0.2);
+    color: var(--text);
+    font-size: 0.78rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* EXPERIENCE */
+  #experience { background: rgba(17,34,64,0.3); }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+  }
+  .timeline-item {
+    padding-left: 2rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px; top: 6px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--navy);
+  }
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.35rem;
+  }
+  .timeline-role { color: var(--white); font-weight: 600; font-size: 1rem; }
+  .timeline-company { color: var(--text-dim); font-size: 0.88rem; margin-bottom: 0.75rem; }
+  .timeline-desc { color: var(--text-dim); font-size: 0.88rem; }
+  .timeline-desc li { margin-bottom: 0.3rem; list-style: none; padding-left: 1rem; position: relative; }
+  .timeline-desc li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; top: 4px; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.75rem;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .project-card:hover { border-color: rgba(79,142,247,0.4); transform: translateY(-4px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+  .project-icon { font-size: 1.6rem; }
+  .project-links { display: flex; gap: 0.5rem; }
+  .project-links a { color: var(--text-dim); text-decoration: none; font-size: 0.8rem; transition: color 0.2s; }
+  .project-links a:hover { color: var(--accent); }
+  .project-name { color: var(--white); font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .project-desc { color: var(--text-dim); font-size: 0.85rem; line-height: 1.7; flex: 1; margin-bottom: 1rem; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tech-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent2);
+    background: rgba(167,139,250,0.08);
+    border: 1px solid rgba(167,139,250,0.2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+  }
+
+  /* PUBLICATIONS */
+  #publications { background: rgba(17,34,64,0.3); }
+  .pub-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 8px;
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .pub-badge {
+    display: inline-block;
+    background: rgba(240,180,41,0.1);
+    border: 1px solid rgba(240,180,41,0.3);
+    color: var(--gold);
+    font-size: 0.72rem;
+    font-family: 'DM Mono', monospace;
+    padding: 0.2rem 0.75rem;
+    border-radius: 3px;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  .pub-title { color: var(--white); font-weight: 600; font-size: 0.97rem; margin-bottom: 0.5rem; line-height: 1.5; }
+  .pub-venue { color: var(--text-dim); font-size: 0.83rem; margin-bottom: 0.75rem; }
+  .pub-desc { color: var(--text-dim); font-size: 0.85rem; }
+  .pub-desc li { list-style: none; padding-left: 1rem; position: relative; margin-bottom: 0.3rem; }
+  .pub-desc li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-size: 0.7rem; top: 4px; }
+  .pub-accuracy {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    margin-top: 0.75rem;
+    background: rgba(79,142,247,0.1);
+    border: 1px solid rgba(79,142,247,0.2);
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+  }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .edu-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.75rem;
+    transition: border-color 0.2s;
+  }
+  .edu-card:hover { border-color: rgba(79,142,247,0.4); }
+  .edu-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .edu-degree { color: var(--white); font-weight: 600; font-size: 0.97rem; margin-bottom: 0.25rem; }
+  .edu-inst { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 0.75rem; }
+  .edu-score {
+    display: inline-block;
+    background: rgba(79,142,247,0.1);
+    border: 1px solid rgba(79,142,247,0.2);
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+  }
+
+  /* ACHIEVEMENTS */
+  .achievements-list { display: flex; flex-direction: column; gap: 1rem; }
+  .achievement-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    transition: border-color 0.2s;
+  }
+  .achievement-item:hover { border-color: rgba(240,180,41,0.3); }
+  .achievement-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    opacity: 0.5;
+    flex-shrink: 0;
+    width: 40px;
+    text-align: center;
+  }
+  .achievement-text { color: var(--text-dim); font-size: 0.9rem; }
+
+  /* CERTIFICATIONS */
+  #certifications { background: rgba(17,34,64,0.3); }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .cert-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    transition: all 0.2s;
+  }
+  .cert-card:hover { border-color: rgba(79,142,247,0.4); transform: translateY(-2px); }
+  .cert-issuer {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .cert-name { color: var(--text); font-size: 0.85rem; font-weight: 500; margin-bottom: 0.4rem; }
+  .cert-date { color: var(--text-dim); font-size: 0.75rem; font-family: 'DM Mono', monospace; }
+
+  /* CONTACT */
+  #contact { text-align: center; }
+  .contact-inner { max-width: 560px; margin: 0 auto; }
+  .contact-text { color: var(--text-dim); margin-bottom: 2rem; font-size: 0.97rem; }
+  .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+  .contact-email {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(79,142,247,0.3);
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+    display: block;
+    margin: 1.5rem auto;
+  }
+  .contact-email:hover { border-color: var(--accent); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    font-family: 'DM Mono', monospace;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.6s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; opacity: 0; }
+  .delay-2 { animation-delay: 0.2s; opacity: 0; }
+  .delay-3 { animation-delay: 0.3s; opacity: 0; }
+  .delay-4 { animation-delay: 0.4s; opacity: 0; }
+  .delay-5 { animation-delay: 0.5s; opacity: 0; }
+
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero-grid .photo-frame { display: none; }
+    .hero-desc { max-width: 100%; }
+    .hero-buttons { justify-content: center; }
+    .about-grid { grid-template-columns: 1fr; }
+    nav { padding: 1rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">IA_</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Research</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <p class="hero-tag fade-up delay-1">👋 Hello, I'm</p>
+        <h1 class="hero-name fade-up delay-2">Isha<br>Agarwal</h1>
+        <p class="hero-title fade-up delay-3">AI/ML Engineer · Web Developer · Research Author</p>
+        <p class="hero-desc fade-up delay-4">
+          B.Tech CSE (IoT, CS & BT) student at IEM Kolkata with a 9.5 CGPA, passionate about building intelligent systems and solving real-world problems through machine learning, deep learning, and full-stack development.
+        </p>
+        <div class="hero-buttons fade-up delay-5">
+          <a href="Isha_AgarwalCV.pdf" download class="btn btn-primary">⬇ Download Resume</a>
+          <a href="https://linkedin.com/in/isha-agarwal-76312a279" target="_blank" class="btn btn-outline">LinkedIn</a>
+          <a href="https://github.com/heyyisha" target="_blank" class="btn btn-ghost">GitHub</a>
+          <a href="mailto:ishaagarwal0411@gmail.com" class="btn btn-ghost">Email</a>
+        </div>
+      </div>
+      <div class="photo-frame fade-up delay-3">
+        <img src="MY_PIC_2.jpeg" alt="Isha Agarwal" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">01 — About</p>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm Isha Agarwal, a Computer Science & Engineering student (specialising in IoT, Cybersecurity & Blockchain Technology) at the Institute of Engineering and Management, Kolkata, maintaining a CGPA of 9.5/10.</p>
+        <p>My work spans machine learning research, deep learning model development, and web application building. I've published research at an international conference, completed internships across AI, web development, and design, and represented my department in placement and student bodies.</p>
+        <p>Outside academics, I participated in the International Study Abroad Programme in Cybersecurity and Data Analytics at AIT, Thailand (2025), and I'm currently building AI-powered legal and environmental tools.</p>
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-card">
+          <div class="highlight-icon">🏆</div>
+          <div class="highlight-text">
+            <h4>97% Research Accuracy</h4>
+            <p>Published at COMSYS 2026 with SAMME-based ensemble and Explainable AI</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🌏</div>
+          <div class="highlight-text">
+            <h4>International Study Abroad</h4>
+            <p>Cybersecurity & Data Analytics using AI — AIT, Thailand (2025)</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🥈</div>
+          <div class="highlight-text">
+            <h4>2nd Rank — Academic Excellence</h4>
+            <p>Secured 2nd Rank for Academic Excellence in 2025</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">📞</div>
+          <div class="highlight-text">
+            <h4>+91-7595969840</h4>
+            <p>Kolkata, West Bengal, India</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">02 — Skills</p>
+    <h2 class="section-title">Technical Arsenal</h2>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <div class="skill-cat-title">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">C</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">ML / AI</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Machine Learning</span>
+          <span class="skill-tag">Deep Learning</span>
+          <span class="skill-tag">Ensemble Learning</span>
+          <span class="skill-tag">Boosting</span>
+          <span class="skill-tag">Classification</span>
+          <span class="skill-tag">Regression</span>
+          <span class="skill-tag">NLP</span>
+          <span class="skill-tag">XAI</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Frameworks & Libraries</div>
+        <div class="skill-tags">
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">Keras</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">Matplotlib</span>
+          <span class="skill-tag">SHAP</span>
+          <span class="skill-tag">LIME</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Tools & Platforms</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Tableau</span>
+          <span class="skill-tag">GitHub</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">AWS</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Core CS</div>
+        <div class="skill-tags">
+          <span class="skill-tag">DSA</span>
+          <span class="skill-tag">DBMS</span>
+          <span class="skill-tag">OS</span>
+          <span class="skill-tag">Computer Networks</span>
+          <span class="skill-tag">Software Engineering</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Other</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Cybersecurity</span>
+          <span class="skill-tag">IoT Systems</span>
+          <span class="skill-tag">Data Analysis</span>
+          <span class="skill-tag">Graphic Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">03 — Experience</p>
+    <h2 class="section-title">Work Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">Jul 2025 – Aug 2025</div>
+        <div class="timeline-role">Web Development Intern</div>
+        <div class="timeline-company">ApexPlanet Software</div>
+        <ul class="timeline-desc">
+          <li>Developed responsive web interfaces using HTML, CSS, and JavaScript for client-facing applications</li>
+          <li>Built and tested UI components ensuring cross-browser compatibility and mobile responsiveness</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Jun 2025 – Jul 2025</div>
+        <div class="timeline-role">Artificial Intelligence Intern</div>
+        <div class="timeline-company">Code Alpha</div>
+        <ul class="timeline-desc">
+          <li>Developed and evaluated supervised ML models for real-world problem statements</li>
+          <li>Performed data preprocessing, feature engineering, and model performance analysis using Python</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Jun 2024 – Jul 2024</div>
+        <div class="timeline-role">Graphic Design Intern</div>
+        <div class="timeline-company">Mitti Café</div>
+        <ul class="timeline-desc">
+          <li>Designed digital creatives and promotional materials to enhance brand engagement</li>
+          <li>Collaborated with the marketing team to produce visual content for social media campaigns</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Sep 2025 – Mar 2026</div>
+        <div class="timeline-role">Tech Student Coordinator</div>
+        <div class="timeline-company">Technical Events & Competitions, IEM Kolkata</div>
+        <ul class="timeline-desc">
+          <li>Coordinated technical events and competitions at the institutional level</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">04 — Projects</p>
+    <h2 class="section-title">What I've Built</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon">⚖️</div>
+          <div class="project-links">
+            <a href="https://github.com/heyyisha" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="project-name">OCR-NLP Legal Statute Predictor</div>
+        <div class="project-desc">An OCR-NLP based legal assistant for automatic statute classification from unstructured text. Implements a preprocessing pipeline with tokenization, stopword removal, and TF-IDF feature extraction, evaluated using accuracy, precision, recall, and F1-score.</div>
+        <div class="project-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">NLP</span>
+          <span class="tech-pill">Scikit-learn</span>
+          <span class="tech-pill">PyTorch</span>
+          <span class="tech-pill">OCR</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon">💧</div>
+          <div class="project-links">
+            <a href="https://github.com/heyyisha" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="project-name">IoT-Based Water Quality Prediction</div>
+        <div class="project-desc">Deep learning models for real-time water quality prediction using IoT sensor data at the Ganga–Yamuna confluence. Implements ML/DL architecture comparison with RMSE, MSE, and accuracy metrics along with cross-validation for generalisation.</div>
+        <div class="project-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">PyTorch</span>
+          <span class="tech-pill">NumPy</span>
+          <span class="tech-pill">Pandas</span>
+          <span class="tech-pill">Matplotlib</span>
+          <span class="tech-pill">IoT</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon">🧠</div>
+          <div class="project-links">
+            <a href="https://github.com/heyyisha" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="project-name">Cognitive Decline Prediction (Diabetes)</div>
+        <div class="project-desc">An ensemble-based predictive framework using AdaBoost (SAMME) on clinical and behavioural features. Integrated Explainable AI (SHAP & LIME) for model interpretability. Achieved 97% classification accuracy on evaluation dataset.</div>
+        <div class="project-tech">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">AdaBoost</span>
+          <span class="tech-pill">SHAP</span>
+          <span class="tech-pill">LIME</span>
+          <span class="tech-pill">Scikit-learn</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: 2rem;">
+      <a href="https://github.com/heyyisha" target="_blank" class="btn btn-outline">View All Projects on GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="container">
+    <p class="section-label">05 — Research</p>
+    <h2 class="section-title">Publications</h2>
+    <div class="pub-card">
+      <div class="pub-badge">COMSYS 2026 · International Conference Paper</div>
+      <div class="pub-title">Combating Cognitive Decline in Type 2 Diabetes: A Predictive Framework Using SAMME-Based Ensembles and Explainable AI</div>
+      <div class="pub-venue">Published at COMSYS 2026 International Conference</div>
+      <ul class="pub-desc">
+        <li>Proposed an ensemble-based predictive framework using AdaBoost (SAMME) on clinical and behavioural features</li>
+        <li>Integrated Explainable AI techniques (SHAP & LIME) for model interpretability and transparency</li>
+        <li>Focused on healthcare analytics and decision-support systems for cognitive decline prediction</li>
+      </ul>
+      <div class="pub-accuracy">🎯 97% Classification Accuracy</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <p class="section-label">06 — Education</p>
+    <h2 class="section-title">Academic Background</h2>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-year">2023 – 2027</div>
+        <div class="edu-degree">B.Tech — CSE (IoT, CS & BT)</div>
+        <div class="edu-inst">Institute of Engineering & Management, Kolkata</div>
+        <span class="edu-score">CGPA: 9.5 / 10</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2023</div>
+        <div class="edu-degree">Senior Secondary (XII)</div>
+        <div class="edu-inst">Ashok Hall Girls' Higher Secondary School</div>
+        <span class="edu-score">91.5%</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2021</div>
+        <div class="edu-degree">Secondary (X)</div>
+        <div class="edu-inst">Loreto Convent Entally School</div>
+        <span class="edu-score">97.3%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" style="background: rgba(17,34,64,0.3);">
+  <div class="container">
+    <p class="section-label">07 — Achievements</p>
+    <h2 class="section-title">Milestones</h2>
+    <div class="achievements-list">
+      <div class="achievement-item">
+        <div class="achievement-num">01</div>
+        <div class="achievement-text">Secured 2nd Rank for Academic Excellence (2025) at IEM Kolkata</div>
+      </div>
+      <div class="achievement-item">
+        <div class="achievement-num">02</div>
+        <div class="achievement-text">Completed International Study Abroad Programme in Cybersecurity and Data Analytics using AI — AIT, Thailand (2025)</div>
+      </div>
+      <div class="achievement-item">
+        <div class="achievement-num">03</div>
+        <div class="achievement-text">Published research at COMSYS 2026 International Conference achieving 97% classification accuracy using SAMME-based ensemble and Explainable AI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <p class="section-label">08 — Certifications</p>
+    <h2 class="section-title">Credentials</h2>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-issuer">IIT Delhi Alumni</div>
+        <div class="cert-name">Data Analytics</div>
+        <div class="cert-date">Mar 2026</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">Amazon Web Services</div>
+        <div class="cert-name">Solutions Architecture Job Simulation</div>
+        <div class="cert-date">Feb 2026</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">Nestlé</div>
+        <div class="cert-name">E-Learning Certification</div>
+        <div class="cert-date">Feb 2026</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">IISc Bengaluru</div>
+        <div class="cert-name">Programming with Generative AI</div>
+        <div class="cert-date">Dec 2025</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">Microsoft</div>
+        <div class="cert-name">Foundations of AI and Machine Learning</div>
+        <div class="cert-date">May 2025</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">Google</div>
+        <div class="cert-name">Foundations of Cybersecurity</div>
+        <div class="cert-date">Apr 2025</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">IBM</div>
+        <div class="cert-name">Introduction to Software Engineering</div>
+        <div class="cert-date">Apr 2025</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">IIT Madras</div>
+        <div class="cert-name">Python for Data Science</div>
+        <div class="cert-date">Feb 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <p class="section-label" style="text-align:center; display:block;">09 — Contact</p>
+      <h2 class="section-title" style="display:block; text-align:center;">Get In Touch</h2>
+      <p style="margin-bottom:0.25rem; color:var(--text-dim);" class="contact-text">
+        I'm open to internship opportunities, research collaborations, and interesting projects. Feel free to reach out — I'll get back to you!
+      </p>
+      <a href="mailto:ishaagarwal0411@gmail.com" class="contact-email">ishaagarwal0411@gmail.com</a>
+      <div class="contact-links">
+        <a href="https://linkedin.com/in/isha-agarwal-76312a279" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+        <a href="https://github.com/heyyisha" target="_blank" class="btn btn-ghost">GitHub ↗</a>
+        <a href="tel:+917595969840" class="btn btn-ghost">+91-7595969840</a>
+        <a href="Isha_AgarwalCV.pdf" download class="btn btn-primary">⬇ Resume</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & built with ♥ · Isha Agarwal © 2026</p>
+</footer>
+
+</body>
+</html>
